@@ -1,0 +1,104 @@
+<robot name="lobot" 
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <link name="world">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </visual>
+
+    </link>
+    
+    <joint name="world_joint" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+        <origin xyz="0  0 0.6" rpy="0 0 0" />
+    </joint>
+
+    <link name="base_link">
+        <inertial>
+            <mass value="5.3221"/>
+            <origin xyz="-0.01209 -0.00442 0.02145" rpy="0 0 0"/>
+            <inertia ixx="0.03408839175" ixy="0.00000898087" ixz="0.00238269732" iyy="0.03351929137" iyz="0.00049460232" izz="0.04506059363"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.3 0.35 0.15"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="-0.022 0 0.01" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+                <!-- <box size="0.3 0.35 0.14"/> -->
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_left_1_link">
+        <inertial>
+          <mass value="1.02901"/>
+          <origin xyz="0 0 0.42" rpy="0 0 0"/>
+          <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0.025 -0.1" />
+            <geometry>
+                <box size="0.15 0.10 0.20" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.15 0.10 0.20" />
+                <!-- <box size="0.3 0.35 0.14"/> -->
+            </geometry>
+        </collision>
+    </link>
+    <link name="leg_right_1_link">
+        <inertial>
+          <mass value="1.02901"/>
+          <origin xyz="0.02571 0 0.02557" rpy="0 0 0"/>
+          <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 -0.025 -0.1" />
+            <geometry>
+                <box size="0.15 0.10 0.20" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.15 0.10 0.20" />
+                <!-- <box size="0.3 0.35 0.14"/> -->
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="leg_left_1_joint" type="revolute">
+        <origin xyz="0  0.075 -0.08" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <parent link="base_link" />
+        <child link="leg_left_1_link" />
+        <limit lower="-1.57" upper="1.57" effort="50" velocity="4" />
+        <dynamics friction="1.0" damping="1.0" />
+    </joint>
+
+    <joint name="leg_right_1_joint" type="revolute">
+        <origin xyz="0  -0.075 -0.08" rpy="0 0 0" />
+        <axis xyz="1 0 0" />
+        <parent link="base_link" />
+        <child link="leg_right_1_link" />
+        <limit lower="-1.57" upper="1.57" effort="50" velocity="4" />
+        <dynamics friction="1.0" damping="1.0" />
+    </joint>
+
+    <!-- <xacro:include filename="$(find lobot_description)/urdf/test_leg/leg1.urdf.xacro" /> -->
+    <!-- <xacro:include filename="$(find lobot_description)/gazebo/gazebo.urdf.xacro" /> -->
+
+    <!-- <xacro:lobot_leg name="leg" side="right" parent="base_link"/>
+    <xacro:lobot_leg name="leg" side="left" parent="base_link"/> -->
+
+</robot>

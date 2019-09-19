@@ -1,0 +1,31 @@
+<robot name="lobot" 
+    xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <link name="base_link">
+        <inertial>
+            <mass value="5.3221"/>
+            <origin xyz="-0.01209 -0.00442 0.02145" rpy="0 0 0"/>
+            <inertia ixx="0.03408839175" ixy="0.00000898087" ixz="0.00238269732" iyy="0.03351929137" iyz="0.00049460232" izz="0.04506059363"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.3 0.35 0.15"/>
+            </geometry>
+            <material name="LightGrey" />
+        </visual>
+        <collision>
+            <origin xyz="-0.022 0 0.01" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+                <!-- <box size="0.3 0.35 0.14"/> -->
+            </geometry>
+        </collision>
+    </link>
+    <xacro:include filename="$(find lobot_description)/urdf/leg/leg.urdf.xacro" />
+    <xacro:include filename="$(find lobot_description)/gazebo/gazebo.urdf.xacro" />
+
+    <xacro:lobot_leg name="leg" side="right" reflect="1.0" parent="base_link"/>
+    <xacro:lobot_leg name="leg" side="left" reflect="-1.0" parent="base_link"/>
+
+</robot>

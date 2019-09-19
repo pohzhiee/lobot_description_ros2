@@ -1,0 +1,71 @@
+<robot name="lobot" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="lobot_leg" params="name parent side">
+        <link name="leg_${side}_1_link">
+            <inertial>
+              <mass value="1.02901"/>
+              <origin xyz="-0.02571 0 0.02557" rpy="0 0 0"/>
+              <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334"/>
+            </inertial>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <box size="0.15 0.10 0.20" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.15 0.10 0.20" />
+                    <!-- <box size="0.3 0.35 0.14"/> -->
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="leg_${side}_1_joint" type="revolute">
+            <origin xyz="0  0.075 -0.14353" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <parent link="${parent}" />
+            <child link="leg_${side}_1_link" />
+            <limit lower="-1.57" upper="1.57" effort="50" velocity="4" />
+            <dynamics friction="1.0" damping="1.0" />
+        </joint>
+
+        <link name="leg_${side}_2_link">
+            <inertial>
+                <mass value="0.69621" />
+                <origin xyz="0.00057 0.00881	-0.01125" rpy="0.0 0.0 0.0" />
+                <inertia ixx="0.0008416476" ixy="-0.00000268743" ixz="0.00000667199" iyy="0.00039794844" iyz="0.00002668971" izz="0.00084196694" />
+            </inertial>
+            <visual>
+                <origin rpy="1.57 0 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder length="0.10" radius="0.04" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="leg_${side}_2_joint" type="revolute">
+            <origin xyz="0 0 0.0" rpy="0 1.57 0" />
+            <axis xyz="0 0 1" />
+            <parent link="leg_${side}_1_link" />
+            <child link="leg_${side}_2_link" />
+            <dynamics friction="1.0" damping="1.0" />
+            <limit lower="-1.57" upper="1.57" effort="10" velocity="5" />
+        </joint>
+
+        <!-- <gazebo reference="leg_${side}_1_link">
+            <mu1>0.9</mu1>
+            <mu2>0.9</mu2>
+        </gazebo>
+        <gazebo reference="leg_${side}_2_link">
+          <mu1>0.9</mu1>
+          <mu2>0.9</mu2>
+        </gazebo>
+        <gazebo reference="leg_${side}_1_joint">
+           <implicitSpringDamper>1</implicitSpringDamper>
+        </gazebo>
+        <gazebo reference="leg_${side}_2_joint">
+            <implicitSpringDamper>1</implicitSpringDamper>
+        </gazebo> -->
+    </xacro:macro>
+</robot>
