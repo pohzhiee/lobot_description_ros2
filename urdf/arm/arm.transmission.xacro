@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <robot name="lobot" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="lobot_leg_transmission" params="name side number reduction" >
+  <xacro:macro name="lobot_arm_transmission" params="name side number reduction" >
     <transmission name="${name}_${side}_${number}_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <actuator name="${name}_${side}_${number}_motor" >
         <mechanicalReduction>${reduction}</mechanicalReduction>
       </actuator>
       <joint name="${name}_${side}_${number}_joint">
-        <hardwareInterface>hardware_interface/JointCommandHandle</hardwareInterface>
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
     </transmission>
   </xacro:macro>

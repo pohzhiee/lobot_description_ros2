@@ -17,10 +17,6 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(tf2_ros REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(sensor_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -36,20 +32,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-add_executable(tf_pub_lobot src/tf_publish_node.cpp)
-ament_target_dependencies(tf_pub_lobot rclcpp tf2_ros)
-
-add_executable(joint_state_pub src/joint_state_pub.cpp)
-ament_target_dependencies(joint_state_pub rclcpp sensor_msgs)
-
-
-install(TARGETS 
-  tf_pub_lobot
-  joint_state_pub
-  DESTINATION lib/${PROJECT_NAME})
-
 install(DIRECTORY
-  launch
   robots
   urdf
   gazebo

@@ -1,0 +1,133 @@
+<?xml version="1.0" ?>
+<!--
+  Author: Poh Zhi-Ee (zhiee.poh@httechnology.com)
+  Copyright (c) 2019, SIW Manufacturing Sdn. Bhd.
+  All rights reserved.
+-->
+<robot name="lobot" xmlns:xacro="http://ros.org/wiki/xacro">
+    <!--File includes-->
+    <xacro:include filename="$(find lobot_description)/urdf/arm/arm.transmission.xacro" />
+
+    <!--Constant parameters-->
+    <xacro:property name="deg_to_rad" value="0.01745329251994329577" />
+
+    <xacro:macro name="lobot_arm" params="name parent side reflect">
+
+        <link name="arm_${side}_1_link">
+            <inertial>
+                <mass value="0.05901" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334" />
+            </inertial>
+            <visual>
+                <origin rpy="${90*deg_to_rad} 0 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.01" length="0.02" />
+                </geometry>
+                <material name="LightGrey" />
+            </visual>
+            <!-- <collision>
+                <origin rpy="${90*deg_to_rad} 0 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.01" length="0.02" />
+                </geometry>
+            </collision> -->
+        </link>
+
+        <joint name="arm_${side}_1_joint" type="revolute">
+            <origin xyz="0  ${-reflect*0.059} 0.0305" rpy="0 0 0" />
+            <axis xyz="0 1 0" />
+            <parent link="${parent}" />
+            <child link="arm_${side}_1_link" />
+            <limit lower="-1.57" upper="1.57" effort="50" velocity="4" />
+        </joint>
+
+        <link name="arm_${side}_2_link">
+            <inertial>
+                <mass value="0.05901" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334" />
+            </inertial>
+            <visual>
+                <origin rpy="0 ${90*deg_to_rad} 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.01" length="0.02" />
+                </geometry>
+                <material name="LightGrey" />
+            </visual>
+            <!-- <collision>
+                <origin rpy="${90*deg_to_rad} 0 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.01" length="0.02" />
+                </geometry>
+            </collision> -->
+        </link>
+
+        <joint name="arm_${side}_2_joint" type="revolute">
+            <origin xyz="0 ${-reflect*0.02903} 0" rpy="0 0 0" />
+            <axis xyz="1 0 0" />
+            <parent link="arm_${side}_1_link" />
+            <child link="arm_${side}_2_link" />
+            <limit lower="${-90*deg_to_rad}" upper="${90*deg_to_rad}" effort="50" velocity="4" />
+        </joint>
+
+        <link name="arm_${side}_3_link">
+            <inertial>
+                <mass value="0.05901" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334" />
+            </inertial>
+            <visual>
+                <origin rpy="0 ${90*deg_to_rad} 0" xyz="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.01" length="0.02" />
+                </geometry>
+                <material name="LightGrey" />
+            </visual>
+            <!-- <collision>
+                    <origin rpy="${90*deg_to_rad} 0 0" xyz="0 0 0" />
+                    <geometry>
+                        <cylinder radius="0.01" length="0.02" />
+                    </geometry>
+                </collision> -->
+        </link>
+
+        <joint name="arm_${side}_3_joint" type="revolute">
+            <origin xyz="0 ${-reflect*0.05856} 0" rpy="0 0 0" />
+            <axis xyz="1 0 0" />
+            <parent link="arm_${side}_2_link" />
+            <child link="arm_${side}_3_link" />
+            <limit lower="${-90*deg_to_rad}" upper="${90*deg_to_rad}" effort="50" velocity="4" />
+        </joint>
+        <!-- Gripper fixed link-->
+        <link name="gripper_${side}_link">
+            <inertial>
+                <mass value="0.05901" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.00132187534" ixy="0.00000001514" ixz="0.00040022268" iyy="0.0018528617" iyz="0.00000050713" izz="0.00084231334" />
+            </inertial>
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <box size="0.04 0.090 0.02" />
+                </geometry>
+                <material name="LightGrey" />
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <box size="0.04 0.090 0.02" />
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="gripper_${side}_joint" type="fixed">
+            <origin xyz="0 ${-reflect*0.045} 0" rpy="0 0 0" />
+            <parent link="arm_${side}_3_link" />
+            <child link="gripper_${side}_link" />
+        </joint>
+
+        <xacro:lobot_arm_transmission name="${name}" side="${side}" number="1" reduction="${leg_reduction}" />
+    </xacro:macro>
+
+</robot>
