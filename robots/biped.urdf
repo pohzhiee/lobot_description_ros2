@@ -87,7 +87,7 @@
   <gazebo>
     <plugin filename="librobot_plugin.so" name="robot_plugin_lobot">
       <robot_name>lobot</robot_name>
-      <update_rate>1000</update_rate>
+      <update_rate>100</update_rate>
     </plugin>
   </gazebo>
   <gazebo reference="IMU_link">
