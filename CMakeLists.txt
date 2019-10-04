@@ -35,6 +35,7 @@ endif()
 install(DIRECTORY
   robots
   urdf
+  worlds
   gazebo
   DESTINATION share/${PROJECT_NAME}/
 )
