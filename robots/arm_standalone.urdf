@@ -52,38 +52,39 @@
     </collision>
   </link>
   <joint name="arm_1_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0.01 0.052"/>
+    <origin rpy="0 0 0" xyz="0 0.01 0.0"/>
     <axis xyz="0 0 1"/>
     <parent link="arm_1_link"/>
-    <child link="arm_2_interm_link"/>
+    <child link="arm_bracket_1"/>
     <limit effort="50" lower="-2.356" upper="2.356" velocity="40"/>
   </joint>
-  <link name="arm_2_interm_link">
+  <link name="arm_bracket_1">
     <inertial>
-      <mass value="0.00001"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      <mass value="0.00658"/>
+      <origin rpy="0 0 0" xyz="0 0 0.03693"/>
+      <inertia ixx="0.00097149" ixy="0.0" ixz="0.0" iyy="0.00390446" iyz="0.0" izz="0.00346115"/>
     </inertial>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.029"/>
       <geometry>
-        <sphere radius="0.01"/>
+        <box size="0.052 0.025 0.002"/>
       </geometry>
       <material name="Green"/>
     </visual>
   </link>
   <joint name="arm_2_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0.052"/>
     <axis xyz="1 0 0"/>
-    <parent link="arm_2_interm_link"/>
+    <parent link="arm_bracket_1"/>
     <child link="arm_2_link"/>
     <limit effort="50" lower="-2.356" upper="2.356" velocity="40"/>
   </joint>
+  <!-- arm_2_link = motor2 -->
   <link name="arm_2_link">
     <inertial>
-      <mass value="0.06"/>
-      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
-      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      <mass value="0.0618"/>
+      <origin rpy="0 0 0" xyz="0.0005 -0.01505 0"/>
+      <inertia ixx="0.00703304" ixy="-0.00250174" ixz="0.0" iyy="0.00793603" iyz="0.0" izz="0.01230371"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.01 0"/>
@@ -93,13 +94,38 @@
       <material name="LightGrey"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
       <geometry>
         <box size="0.04 0.04 0.02"/>
       </geometry>
-      <material name="LightGrey"/>
     </collision>
   </link>
+  <!-- arm_bracket_2 = Asm_WeldedBracket -->
+  <link name="arm_bracket_2">
+    <inertial>
+      <mass value="0.01175"/>
+      <origin rpy="0 0 0" xyz="0 -0.0029 0"/>
+      <inertia ixx="0.00229954" ixy="0.0" ixz="0.0" iyy="0.00519619" iyz="0.0" izz="0.00648306"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.055 0.002 0.025"/>
+      </geometry>
+      <material name="Green"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.055 0.002 0.025"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_bracket_2_joint" type="fixed">
+    <parent link="arm_2_link"/>
+    <child link="arm_bracket_2"/>
+    <origin rpy="0 0 0" xyz="0 -0.03653 0"/>
+  </joint>
   <joint name="arm_3_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0 -0.06 0"/>
     <axis xyz="1 0 0"/>
@@ -107,11 +133,12 @@
     <child link="arm_3_link"/>
     <limit effort="50" lower="-2.356" upper="2.356" velocity="40"/>
   </joint>
+  <!-- arm_3_link = motor3 -->
   <link name="arm_3_link">
     <inertial>
-      <mass value="0.06"/>
-      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
-      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      <mass value="0.0618"/>
+      <origin rpy="0 0 0" xyz="0.0005 -0.01505 0"/>
+      <inertia ixx="0.00703304" ixy="-0.00250174" ixz="0.0" iyy="0.00793603" iyz="0.0" izz="0.01230371"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 -0.01 0"/>
@@ -121,13 +148,13 @@
       <material name="LightGrey"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
       <geometry>
         <box size="0.04 0.04 0.02"/>
       </geometry>
-      <material name="LightGrey"/>
     </collision>
   </link>
+  <!-- The entire grippper mass property is put on the first link -->
   <joint name="grip_joint_1" type="fixed">
     <parent link="arm_3_link"/>
     <child link="grip_link_1"/>
@@ -135,9 +162,9 @@
   </joint>
   <link name="grip_link_1">
     <inertial>
-      <mass value="0.005"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+      <mass value="0.01023"/>
+      <origin rpy="0 0 0" xyz="0 -0.05355 0"/>
+      <inertia ixx="0.00443574" ixy="0.0" ixz="0.0" iyy="0.00287052" iyz="0.00000684" izz="0.00651523"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -147,11 +174,10 @@
       <material name="White"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.055 0.04 0.001"/>
+        <box size="0.04 0.055 0.001"/>
       </geometry>
-      <material name="White"/>
     </collision>
   </link>
   <joint name="grip_joint_2" type="fixed">
@@ -173,11 +199,10 @@
       <material name="White"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
+      <origin rpy="0.785398 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.055 0.04 0.001"/>
+        <box size="0.04 0.017 0.001"/>
       </geometry>
-      <material name="White"/>
     </collision>
   </link>
   <joint name="grip_joint_3" type="fixed">
@@ -199,9 +224,9 @@
       <material name="White"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 -0.01 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.055 0.04 0.001"/>
+        <box size="0.04 0.001 0.007"/>
       </geometry>
       <material name="White"/>
     </collision>
