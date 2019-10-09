@@ -68,7 +68,7 @@
     <axis xyz="0 0 1"/>
     <parent link="arm_1_link"/>
     <child link="arm_bracket_1"/>
-    <limit effort="50" lower="-2.356" upper="2.356" velocity="40"/>
+    <limit effort="20" lower="-2.356" upper="2.356" velocity="10"/>
   </joint>
   <link name="arm_bracket_1">
     <inertial>
@@ -95,7 +95,7 @@
     <axis xyz="1 0 0"/>
     <parent link="arm_bracket_1"/>
     <child link="arm_2_link"/>
-    <limit effort="50" lower="-2.356" upper="2.356" velocity="40"/>
+    <limit effort="20" lower="-1.570796" upper="1.570796" velocity="20"/>
   </joint>
   <!-- arm_2_link = motor2 -->
   <link name="arm_2_link">
@@ -149,7 +149,7 @@
     <axis xyz="1 0 0"/>
     <parent link="arm_2_link"/>
     <child link="arm_3_link"/>
-    <limit effort="50" lower="-2.356" upper="2.356" velocity="40"/>
+    <limit effort="10" lower="-1.570796" upper="1.570796" velocity="10"/>
   </joint>
   <!-- arm_3_link = motor3 -->
   <link name="arm_3_link">
