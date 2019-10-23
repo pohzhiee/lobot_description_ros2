@@ -43,6 +43,9 @@
     <child link="arm_1_link"/>
     <origin rpy="0 0 0" xyz="0 0 0.03"/>
   </joint>
+  <gazebo reference="arm_1_link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
   <link name="arm_1_link">
     <inertial>
       <mass value="0.06"/>
