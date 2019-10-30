@@ -1,0 +1,277 @@
+<sdf version='1.6'>
+  <model name='lobot'>
+    <link name='arm_1_link'>
+      <pose frame=''>0 0 0.03 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.06</mass>
+        <inertia>
+          <ixx>0</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0</iyy>
+          <iyz>0</iyz>
+          <izz>0</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_1_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.04 0.04</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_1_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.04 0.04</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>__default__</uri>
+            <name>__default__</name>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='world_joint' type='fixed'>
+      <child>arm_1_link</child>
+      <parent>world</parent>
+    </joint>
+    <link name='arm_bracket_1'>
+      <pose frame=''>0 0.01 0.03 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0.03693 0 -0 0</pose>
+        <mass>0.00658</mass>
+        <inertia>
+          <ixx>0.00097149</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00390446</iyy>
+          <iyz>0</iyz>
+          <izz>0.00346115</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_bracket_1_collision'>
+        <pose frame=''>0 0 0.029 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.052 0.025 0.002</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='arm_bracket_1_visual'>
+        <pose frame=''>0 0 0.029 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.052 0.025 0.002</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='arm_1_joint' type='revolute'>
+      <child>arm_bracket_1</child>
+      <parent>arm_1_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.356</lower>
+          <upper>2.356</upper>
+          <effort>3.5</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_2_link'>
+      <pose frame=''>0 0.01 0.082 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.00042 -0.018945 0 0 -0 0</pose>
+        <mass>0.07355</mass>
+        <inertia>
+          <ixx>0.00933845</ixx>
+          <ixy>-0.00250186</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0131322</iyy>
+          <iyz>0</iyz>
+          <izz>0.0187926</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_2_link_collision'>
+        <pose frame=''>0 -0.01 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='arm_2_link_fixed_joint_lump__arm_bracket_2_collision_1'>
+        <pose frame=''>0 -0.03653 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.055 0.002 0.025</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='arm_2_link_visual'>
+        <pose frame=''>0 -0.01 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.02</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='arm_2_link_fixed_joint_lump__arm_bracket_2_visual_1'>
+        <pose frame=''>0 -0.03653 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.055 0.002 0.025</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='arm_2_joint' type='revolute'>
+      <child>arm_2_link</child>
+      <parent>arm_bracket_1</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5708</lower>
+          <upper>1.5708</upper>
+          <effort>3</effort>
+          <velocity>20</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_3_link'>
+      <pose frame=''>0 -0.05 0.082 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.000377 -0.034272 0.00104 0 -0 0</pose>
+        <mass>0.08203</mass>
+        <inertia>
+          <ixx>0.011564</ixx>
+          <ixy>-0.00250233</ixy>
+          <ixz>3.21318e-08</ixz>
+          <iyy>0.0108078</iyy>
+          <iyz>1.26508e-05</iyz>
+          <izz>0.018913</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_3_link_collision'>
+        <pose frame=''>0 -0.01 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='arm_3_link_fixed_joint_lump__grip_link_1_collision_1'>
+        <pose frame=''>0 -0.0475 0.01 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.055 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='arm_3_link_fixed_joint_lump__grip_link_2_collision_2'>
+        <pose frame=''>0 -0.0815 0.0033 0.785398 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.017 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='arm_3_link_fixed_joint_lump__grip_link_3_collision_3'>
+        <pose frame=''>0 -0.088 -0.0067 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.001 0.007</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='arm_3_link_visual'>
+        <pose frame=''>0 -0.01 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.02</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='arm_3_link_fixed_joint_lump__grip_link_1_visual_1'>
+        <pose frame=''>0 -0.0475 0.01 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.055 0.001</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='arm_3_link_fixed_joint_lump__grip_link_2_visual_2'>
+        <pose frame=''>0 -0.0815 0.0033 0.785398 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.017 0.001</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='arm_3_link_fixed_joint_lump__grip_link_3_visual_3'>
+        <pose frame=''>0 -0.088 -0.0067 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.001 0.007</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='arm_3_joint' type='revolute'>
+      <child>arm_3_link</child>
+      <parent>arm_2_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.5708</lower>
+          <upper>1.5708</upper>
+          <effort>3</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <plugin name='arm_standalone_joint_state_publisher' filename='libmy_joint_state_publisher.so'>
+      <robot_name>arm_standalone</robot_name>
+      <update_rate>500</update_rate>
+    </plugin>
+    <plugin name='robot_control_plugin_arm_standalone' filename='librobot_control_plugin.so'>
+      <robot_name>arm_standalone</robot_name>
+      <update_rate>100</update_rate>
+    </plugin>
+    <static>0</static>
+    <plugin name='robot_contact_plugin_arm_standalone' filename='librobot_contact_plugin.so'/>
+  </model>
+</sdf>
