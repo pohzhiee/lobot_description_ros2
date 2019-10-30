@@ -32,9 +32,14 @@
     </plugin>
   </gazebo>
   <gazebo>
-    <plugin filename="librobot_plugin.so" name="robot_plugin_arm_standalone">
+    <plugin filename="librobot_control_plugin.so" name="robot_control_plugin_arm_standalone">
       <robot_name>arm_standalone</robot_name>
       <update_rate>100</update_rate>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin filename="librobot_contact_plugin.so" name="robot_contact_plugin_arm_standalone">
+      <robot_name>arm_standalone</robot_name>
     </plugin>
   </gazebo>
   <link name="world"/>
@@ -71,7 +76,7 @@
     <axis xyz="0 0 1"/>
     <parent link="arm_1_link"/>
     <child link="arm_bracket_1"/>
-    <limit effort="20" lower="-2.356" upper="2.356" velocity="10"/>
+    <limit effort="3.5" lower="-2.356" upper="2.356" velocity="10"/>
   </joint>
   <link name="arm_bracket_1">
     <inertial>
@@ -98,7 +103,7 @@
     <axis xyz="1 0 0"/>
     <parent link="arm_bracket_1"/>
     <child link="arm_2_link"/>
-    <limit effort="20" lower="-1.570796" upper="1.570796" velocity="20"/>
+    <limit effort="3" lower="-1.570796" upper="1.570796" velocity="20"/>
   </joint>
   <!-- arm_2_link = motor2 -->
   <link name="arm_2_link">
@@ -152,7 +157,7 @@
     <axis xyz="1 0 0"/>
     <parent link="arm_2_link"/>
     <child link="arm_3_link"/>
-    <limit effort="10" lower="-1.570796" upper="1.570796" velocity="10"/>
+    <limit effort="3" lower="-1.570796" upper="1.570796" velocity="10"/>
   </joint>
   <!-- arm_3_link = motor3 -->
   <link name="arm_3_link">

@@ -85,7 +85,7 @@
     </plugin>
   </gazebo>
   <gazebo>
-    <plugin filename="librobot_plugin.so" name="robot_plugin_lobot">
+    <plugin filename="librobot_control_plugin.so" name="robot_plugin_lobot">
       <robot_name>lobot</robot_name>
       <update_rate>100</update_rate>
     </plugin>
