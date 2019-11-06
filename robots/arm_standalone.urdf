@@ -256,5 +256,24 @@
       </geometry>
     </collision>
   </link>
+  <joint name="grip_joint_4" type="fixed">
+    <parent link="grip_link_3"/>
+    <child link="grip_end_point"/>
+    <origin rpy="0 0 0" xyz="0 -0.0005 -0.0035"/>
+  </joint>
+  <link name="grip_end_point">
+    <inertial>
+      <mass value="0.0000001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.001"/>
+      </geometry>
+      <material name="Red"/>
+    </visual>
+  </link>
 </robot>
 
