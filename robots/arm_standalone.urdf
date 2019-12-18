@@ -103,7 +103,7 @@
     <axis xyz="1 0 0"/>
     <parent link="arm_bracket_1"/>
     <child link="arm_2_link"/>
-    <limit effort="3" lower="-1.570796" upper="1.570796" velocity="20"/>
+    <limit effort="3" lower="-1.570796" upper="0.5" velocity="20"/>
   </joint>
   <!-- arm_2_link = motor2 -->
   <link name="arm_2_link">

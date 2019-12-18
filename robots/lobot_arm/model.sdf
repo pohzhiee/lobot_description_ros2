@@ -170,13 +170,13 @@
       <pose frame=''>0 -0.05 0.082 0 -0 0</pose>
       <inertial>
         <pose frame=''>0.000377 -0.034272 0.00104 0 -0 0</pose>
-        <mass>0.08203</mass>
+        <mass>0.0820301</mass>
         <inertia>
           <ixx>0.011564</ixx>
           <ixy>-0.00250233</ixy>
-          <ixz>3.21318e-08</ixz>
+          <ixz>3.21314e-08</ixz>
           <iyy>0.0108078</iyy>
-          <iyz>1.26508e-05</iyz>
+          <iyz>1.26507e-05</iyz>
           <izz>0.018913</izz>
         </inertia>
       </inertial>
@@ -244,6 +244,14 @@
           </box>
         </geometry>
       </visual>
+      <visual name='arm_3_link_fixed_joint_lump__grip_end_point_visual_4'>
+        <pose frame=''>0 -0.0885 -0.0102 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.001</radius>
+          </sphere>
+        </geometry>
+      </visual>
     </link>
     <joint name='arm_3_joint' type='revolute'>
       <child>arm_3_link</child>
@@ -272,6 +280,8 @@
       <update_rate>100</update_rate>
     </plugin>
     <static>0</static>
-    <plugin name='robot_contact_plugin_arm_standalone' filename='librobot_contact_plugin.so'/>
+    <plugin name='robot_contact_plugin_arm_standalone' filename='librobot_contact_plugin.so'>
+      <robot_name>arm_standalone</robot_name>
+    </plugin>
   </model>
 </sdf>
