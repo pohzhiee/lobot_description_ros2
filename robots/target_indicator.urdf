@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<robot name="target_indicator" xmlns:xacro="http://ros.org/wiki/xacro">
+    <material name="Teal">
+        <color rgba="0.1 0.85 0.85 1.0" />
+    </material>
+    <link name="world" />
+    <joint name="world_joint" type="fixed">
+        <parent link="world" />
+        <child link="target_indicator_base" />
+        <origin rpy="0 0 0" xyz="0 0 0.0" />
+    </joint>
+    <link name="target_indicator_base">
+        <inertial>
+            <mass value="0.06" />
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <sphere radius="0.004" />
+            </geometry>
+            <material name="Teal" />
+        </visual>
+    </link>
+    <gazebo reference="target_indicator_base">
+        <visual>
+            <material>
+                <ambient>0.1 0.8 0.85 1.0</ambient>
+                <diffuse>0.1 0.9 0.9 1.0</diffuse>
+                <specular>0.1 1.0 0.8 1.0</specular>
+                <emissive>0.0 0.0 0.0 0.0</emissive>
+            </material>
+        </visual>
+    </gazebo>
+</robot>

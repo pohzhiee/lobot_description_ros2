@@ -270,10 +270,20 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.004"/>
       </geometry>
       <material name="Red"/>
     </visual>
   </link>
+  <gazebo reference="grip_end_point">
+    <visual>
+      <material>
+        <ambient>0.9 0.19225 0.19225 1.0</ambient>
+        <diffuse>0.9 0.1 0.1 1.0</diffuse>
+        <specular>0.9 0.1 0.1 1.0</specular>
+        <emissive>0.0 0.0 0.0 0.0</emissive>
+      </material>
+    </visual>
+  </gazebo>
 </robot>
 
